@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+<style xmlns="http://purl.org/net/xbiblio/csl" class="in-text" version="1.0" demote-non-dropping-particle="sort-only" page-range-format="expanded" default-locale="ru-RU">
+  <info>
+    <title>Интеллект. Инновации. Инвестиции (Russian)</title>
+    <title-short>ИИИ / III (ГОСТ Р 7.0.5-2008, numeric)</title-short>
+    <id>http://www.zotero.org/styles/intellekt-innovacii-investicii</id>
+    <link href="http://www.zotero.org/styles/intellekt-innovacii-investicii" rel="self"/>
+    <link href="http://www.zotero.org/styles/gost-r-7-0-5-2008-numeric" rel="template"/>
+    <link href="http://intellekt-izdanie.osu.ru/" rel="documentation"/>
+    <author>
+      <name>Nikolai Nikitin</name>
+      <uri>https://orcid.org/0000-0002-8512-7662</uri>
+    </author>
+    <category citation-format="numeric"/>
+    <issn>2077-7175</issn>
+    <summary>Числовой стиль по ГОСТ Р 7.0.5-2008 для раздела «Литература» журнала «Интеллект. Инновации. Инвестиции» (Оренбургский государственный университет). Ссылки в тексте — [N] или [N, с. X]; при перечислении разделитель — точка с запятой [5; 9]. Список — по алфавиту. Области описания разделяются « – ». Автоматически выводятся DOI, EDN (из поля «Loc. in archive») и «дата обращения».</summary>
+    <updated>2026-08-19T00:00:00+00:00</updated>
+    <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
+  </info>
+
+  <!-- ================= Локализация ================= -->
+  <locale>
+    <terms>
+      <!-- В Zotero есть только поле issue, поэтому везде используем № -->
+      <term name="issue" form="symbol">№</term>
+    </terms>
+  </locale>
+  <locale xml:lang="ru">
+    <terms>
+      <term name="online">электронный ресурс</term>
+      <term name="letter" form="short">пат.</term>
+      <term name="accessed">дата обращения</term>
+      <term name="editor" form="verb-short">под ред.</term>
+      <term name="translator" form="verb-short">пер.</term>
+      <term name="et-al">[и др.]</term>
+      <term name="ordinal">-е</term>
+    </terms>
+  </locale>
+  <locale xml:lang="en">
+    <terms>
+      <term name="online">electronic resource</term>
+      <term name="letter" form="short">pat.</term>
+      <term name="editor" form="verb-short">ed.</term>
+      <term name="translator" form="verb-short">trans.</term>
+    </terms>
+  </locale>
+
+  <!-- ================= Макросы ================= -->
+
+  <!-- Авторы в заголовке описания: Фамилия И. О. -->
+  <macro name="author-heading">
+    <names variable="author">
+      <name name-as-sort-order="all" sort-separator=" " initialize-with=". "
+            delimiter=", " delimiter-precedes-last="always" delimiter-precedes-et-al="never"/>
+    </names>
+  </macro>
+
+  <!-- Ключ сортировки библиографии -->
+  <macro name="author-sort">
+    <choose>
+      <if variable="author">
+        <names variable="author">
+          <name name-as-sort-order="all" sort-separator=" "/>
+        </names>
+      </if>
+      <else>
+        <text variable="title"/>
+      </else>
+    </choose>
+  </macro>
+
+  <!-- Редакторы и переводчики (область ответственности) -->
+  <macro name="editor-translator">
+    <names variable="editor translator" delimiter="; ">
+      <label form="verb-short" suffix=" "/>
+      <name and="text" name-as-sort-order="all" sort-separator=" " initialize-with=". "
+            delimiter=", " delimiter-precedes-last="always"/>
+    </names>
+  </macro>
+
+  <!-- Заглавие; для сетевых ресурсов добавляем [сайт] после названия сайта -->
+  <macro name="title">
+    <text variable="title"/>
+  </macro>
+
+  <macro name="container">
+    <choose>
+      <if type="article-journal article-magazine article-newspaper" match="any">
+        <text variable="container-title" form="short"/>
+      </if>
+      <else-if type="webpage post-weblog" match="any">
+        <text variable="container-title" suffix=": [сайт]"/>
+      </else-if>
+      <else>
+        <text variable="container-title"/>
+      </else>
+    </choose>
+  </macro>
+
+  <!-- Сведения, относящиеся к заглавию: тип документа / номер (дис., пат. и т. п.) -->
+  <macro name="type-number">
+    <choose>
+      <if type="patent">
+        <group delimiter=" ">
+          <text term="letter" form="short"/>
+          <text variable="number"/>
+        </group>
+      </if>
+      <else>
+        <group delimiter=" ">
+          <text variable="genre"/>
+          <text variable="number"/>
+        </group>
+      </else>
+    </choose>
+  </macro>
+
+  <macro name="edition">
+    <choose>
+      <if is-numeric="edition">
+        <group delimiter=" ">
+          <number variable="edition" form="ordinal"/>
+          <text term="edition" form="short"/>
+        </group>
+      </if>
+      <else>
+        <text variable="edition"/>
+      </else>
+    </choose>
+  </macro>
+
+  <!-- Выходные данные: Место : Издательство, Год (для книг и т. п.) или Год (для периодики) -->
+  <macro name="imprint">
+    <choose>
+      <if type="article-journal article-magazine article-newspaper" match="any">
+        <text macro="issued-year"/>
+      </if>
+      <else>
+        <group delimiter=", ">
+          <group delimiter=": ">
+            <text variable="publisher-place"/>
+            <text variable="publisher"/>
+          </group>
+          <text macro="issued-year"/>
+        </group>
+      </else>
+    </choose>
+  </macro>
+
+  <macro name="issued-year">
+    <date variable="issued">
+      <date-part name="year"/>
+    </date>
+  </macro>
+
+  <macro name="volume-area">
+    <group delimiter=" ">
+      <text term="volume" form="short" text-case="capitalize-first"/>
+      <text variable="volume"/>
+    </group>
+  </macro>
+
+  <macro name="issue-area">
+    <group delimiter=" ">
+      <text term="issue" form="symbol"/>
+      <text variable="issue"/>
+    </group>
+  </macro>
+
+  <!-- Объём: С. 10-18 (составная часть) либо 216 с. (весь документ) -->
+  <macro name="page">
+    <choose>
+      <if variable="page">
+        <group delimiter=" ">
+          <label variable="page" form="short" text-case="capitalize-first" plural="never"/>
+          <text variable="page"/>
+        </group>
+      </if>
+      <else>
+        <group delimiter=" ">
+          <text variable="number-of-pages"/>
+          <text term="page" form="short" strip-periods="true"/>
+        </group>
+      </else>
+    </choose>
+  </macro>
+
+  <macro name="doi">
+    <text variable="DOI" prefix="https://doi.org/"/>
+  </macro>
+
+  <!-- EDN хранится в поле «Loc. in archive» (archive_location) -->
+  <macro name="edn">
+    <text variable="archive_location" prefix="EDN: "/>
+  </macro>
+
+  <!-- URL и дата обращения — для любого источника, у которого указан URL -->
+  <macro name="access">
+    <choose>
+      <if variable="URL">
+        <group delimiter=" ">
+          <text variable="URL" prefix="URL: "/>
+          <group prefix="(" suffix=")" delimiter=": ">
+            <text term="accessed"/>
+            <date variable="accessed">
+              <date-part name="day" suffix="." form="numeric-leading-zeros"/>
+              <date-part name="month" suffix="." form="numeric-leading-zeros"/>
+              <date-part name="year"/>
+            </date>
+          </group>
+        </group>
+      </if>
+    </choose>
+  </macro>
+
+  <!-- ================= Ссылки в тексте ================= -->
+  <!-- Разделитель между источниками — точка с запятой: [5; 9]. -->
+  <!-- Чтобы включить сворачивание рядов в диапазон ([3-6]), добавьте в тег -->
+  <!-- <citation> атрибут collapse="citation-number" (см. инструкцию). -->
+  <citation delimiter-precedes-et-al="never">
+    <sort>
+      <key variable="citation-number"/>
+    </sort>
+    <layout prefix="[" suffix="]" delimiter="; ">
+      <group delimiter=", ">
+        <text variable="citation-number"/>
+        <group delimiter=" ">
+          <label variable="locator" form="short" plural="never"/>
+          <text variable="locator"/>
+        </group>
+      </group>
+    </layout>
+  </citation>
+
+  <!-- ================= Список «Литература» ================= -->
+  <!-- Сортировка — по алфавиту (автор/заглавие). Нумерация присваивается -->
+  <!-- по алфавитному порядку, поэтому номера в тексте [N] ему соответствуют. -->
+  <bibliography et-al-min="4" et-al-use-first="1" entry-spacing="0">
+    <sort>
+      <key macro="author-sort"/>
+      <key variable="title"/>
+      <key variable="issued"/>
+    </sort>
+    <layout>
+      <text variable="citation-number" suffix=". "/>
+      <!-- Часть 1: заголовок (авторы), заглавие, сведения к заглавию, источник, издание, ответственность -->
+      <group>
+        <text macro="author-heading" suffix=" "/>
+        <text macro="title"/>
+        <text macro="type-number" prefix=": "/>
+        <text macro="container" prefix=" // "/>
+        <text macro="editor-translator" prefix=" / "/>
+      </group>
+      <!-- Часть 2: области, разделяемые « – », каждая заканчивается точкой -->
+      <group prefix=". – " delimiter=" – ">
+        <text macro="edition" suffix="."/>
+        <text macro="imprint" suffix="."/>
+        <text macro="volume-area" suffix="."/>
+        <text macro="issue-area" suffix="."/>
+        <text macro="page" suffix="."/>
+        <text macro="access" suffix="."/>
+        <text macro="doi" suffix="."/>
+        <text macro="edn" suffix="."/>
+      </group>
+    </layout>
+  </bibliography>
+</style>
