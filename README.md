@@ -7,7 +7,6 @@
 | Файл | Назначение |
 |---|---|
 | `intellekt-innovacii-investicii.csl` | Раздел **«Литература»** — ГОСТ Р 7.0.5-2008, числовые ссылки `[N]`, список по алфавиту. |
-| `intellekt-innovacii-investicii-references-harvard.csl` | Раздел **«References»** — Harvard system of referencing (романизация/транслитерация). |
 
 ## Установка в Zotero
 
