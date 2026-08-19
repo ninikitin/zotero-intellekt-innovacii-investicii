@@ -8,8 +8,8 @@
     <link href="http://www.zotero.org/styles/gost-r-7-0-5-2008-numeric" rel="template"/>
     <link href="http://intellekt-izdanie.osu.ru/" rel="documentation"/>
     <author>
-      <name>Your Name</name>
-      <!-- при желании: <uri>https://orcid.org/0000-0000-0000-0000</uri> -->
+      <name>Nikolai Nikitin</name>
+      <uri>https://orcid.org/0000-0002-8512-7662</uri>
     </author>
     <category citation-format="numeric"/>
     <issn>2077-7175</issn>
